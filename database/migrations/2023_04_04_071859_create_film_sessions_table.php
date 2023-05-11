@@ -17,8 +17,8 @@ class CreateFilmSessionsTable extends Migration
             $table->id();
             $table->dateTime('start_date_time');
             $table->integer('session_minutes')->nullable();
-            $table->foreignId('film_id')->constrained();
-            $table->foreignId('hall_id')->constrained();
+            $table->foreignId('film_id')->constrained()->onDelete('cascade');
+            $table->foreignId('hall_id')->constrained()->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

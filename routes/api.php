@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\api\Auth\AuthController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\API\AdminPanel\FilmController;
 use App\Http\Controllers\API\AdminPanel\HallController;
 use App\Http\Controllers\API\AdminPanel\FilmSessionController;
@@ -19,13 +22,22 @@ use App\Http\Controllers\API\AdminPanel\HallPlaceTypePriceController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+
+Route::prefix('admin')->group(function () {
+    Route::post('register', [AuthController::class, 'register']);
+    Route::post('login', [AuthController::class, 'login']);
 });
 
-
 // Public routes
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('auth:sanctum')->group(function () {
+
+    Route::get('auth', [AuthController::class, 'auth']);
+    Route::post('logout', [AuthController::class, 'logout']);
+
     Route::get('init', [InitialAdminPanelController::class, 'index']);
     Route::get('film-sessions', [FilmSessionController::class, 'index']);
     Route::post('film-sessions', [FilmSessionController::class, 'store']);
