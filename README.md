@@ -21,3 +21,11 @@ php artisan serve
 ```
 php artisan migrate --seed
 ```
+
+## ENV файл
+
+добавить хот сесии
+
+```
+SESSION_DOMAIN=localhost
+```
