@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Hall;
 use App\Models\Ticket;
-use App\Models\QrCodes;
+use App\Models\QrCode;
 use App\Models\FilmSession;
 
 use Illuminate\Support\Str;
@@ -107,7 +107,7 @@ class TicketController extends Controller
             ], 301);
         }
 
-        $qr = QrCodes::create([
+        $qr = QrCode::create([
             'qr_url' => $qrPath
         ]);
 

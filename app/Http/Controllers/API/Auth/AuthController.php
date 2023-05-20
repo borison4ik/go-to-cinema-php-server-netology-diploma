@@ -1,16 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\api\Auth;
+namespace App\Http\Controllers\API\Auth;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function auth(Request $request) {
+    public function auth(Request $request) : Response
+    {
 
         $user = Auth::user();
 
@@ -26,7 +28,7 @@ class AuthController extends Controller
 
     }
 
-    public function register(Request $request)
+    public function register(Request $request) : Response
     {
         $fields = $request->validate([
             'name' => 'required|string',
@@ -66,7 +68,7 @@ class AuthController extends Controller
         return response($response, 201);
     }
 
-    public function login(Request $request)
+    public function login(Request $request) : Response
     {
 
         $fields = $request->validate([
@@ -96,12 +98,12 @@ class AuthController extends Controller
         return response($response, 200);
     }
 
-    public function logout(Request $request)
+    public function logout(Request $request) : Response
     {
         $request->user()->currentAccessToken()->delete();
 
-        return [
+        return response([
             'message' => 'Logget out',
-        ];
+        ]);
     }
 }
