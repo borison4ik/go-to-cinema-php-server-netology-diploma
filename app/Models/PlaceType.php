@@ -10,4 +10,5 @@ class PlaceType extends Model
     use HasFactory;
     protected $table = 'place_types';
     protected $guarded = false;
+    protected $hidden = ['created_at', 'deleted_at', 'updated_at'];
 }

@@ -11,4 +11,5 @@ class UserPlace extends Model
 
     protected $table = 'user_places';
     protected $guarded = false;
+    protected $hidden = ['created_at', 'deleted_at', 'updated_at'];
 }

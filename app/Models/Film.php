@@ -10,4 +10,5 @@ class Film extends Model
     use HasFactory;
     protected $table = 'films';
     protected $guarded = false;
+    protected $hidden = ['created_at', 'deleted_at', 'updated_at'];
 }

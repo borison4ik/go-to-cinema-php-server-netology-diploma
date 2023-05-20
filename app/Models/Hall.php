@@ -11,6 +11,7 @@ class Hall extends Model
     use HasFactory;
     protected $table = 'halls';
     protected $guarded = false;
+    protected $hidden = ['created_at', 'deleted_at', 'updated_at'];
 
 
     public function userPlaces()

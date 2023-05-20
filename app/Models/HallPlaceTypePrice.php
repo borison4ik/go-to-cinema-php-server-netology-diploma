@@ -10,4 +10,5 @@ class HallPlaceTypePrice extends Model
     use HasFactory;
     protected $table = 'hall_place_type_prices';
     protected $guarded = false;
+    protected $hidden = ['created_at', 'deleted_at', 'updated_at'];
 }

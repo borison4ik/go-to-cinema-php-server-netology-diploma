@@ -81,9 +81,23 @@ class FilmSessionController extends Controller
      * @param  \App\Models\FilmSession  $filmSession
      * @return \Illuminate\Http\Response
      */
-    public function show(FilmSession $filmSession)
+    public function show($id)
     {
-        //
+        $filmSession = FilmSession::where('id', $id)->first();
+
+        if($filmSession) {
+            return response()->json([
+                "id" => $filmSession['id'],
+                "start_date_time" => $filmSession['start_date_time'],
+                "session_minutes"=> $filmSession['session_minutes'],
+                "film_id"=> $filmSession['film_id'],
+                "hall_id"=> $filmSession['hall_id'],
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'Not found'
+            ], 404);
+        }
     }
 
     /**

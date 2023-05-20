@@ -30,9 +30,7 @@ class InitialAdminPanelController extends Controller
     public function index()
     {
         $halls = Hall::all();
-        $userPlaces = UserPlace::all();
         $hallPlaceTypePrices = HallPlaceTypePrice::all();
-        $filmSessions = FilmSession::all();
         $films = Film::all();
         $placeTypes = PlaceType::all();
 
@@ -56,7 +54,7 @@ class InitialAdminPanelController extends Controller
         $data = [
             'halls' => $newHalls,
             'hallPlaceTypePrices' => IndexToKey::get($hallPlaceTypePrices),
-            'film_sessions' => IndexToKey::get($filmSessions),
+            // 'film_sessions' => IndexToKey::get($filmSessions),
             'films' => IndexToKey::get($films),
             'place_types' => IndexToKey::get($placeTypes)
         ];
