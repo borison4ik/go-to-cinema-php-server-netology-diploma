@@ -32,6 +32,12 @@ Route::get('film-sessions', [FilmSessionController::class, 'index']);
 Route::get('film-sessions/{id}', [FilmSessionController::class, 'show']);
 Route::post('ticket', [TicketController::class, 'store']);
 Route::get('ticket/{sessionId}', [TicketController::class, 'show']);
+Route::get('init', [InitialAdminPanelController::class, 'index']);
+Route::get('films', [FilmController::class, 'index']);
+Route::get('films/{id}', [FilmController::class, 'show']);
+Route::get('hall', [HallController::class, 'index']);
+Route::get('hall/{id}', [HallController::class, 'show']);
+
 
 // Public Admins routes
 Route::prefix('admin')->group(function () {
@@ -45,15 +51,11 @@ Route::prefix('admin')->middleware('auth:sanctum')->group(function () {
     Route::get('auth', [AuthController::class, 'auth']);
     Route::post('logout', [AuthController::class, 'logout']);
 
-    Route::get('init', [InitialAdminPanelController::class, 'index']);
     Route::post('film-sessions', [FilmSessionController::class, 'store']);
-    Route::get('films', [FilmController::class, 'index']);
+
     Route::post('films', [FilmController::class, 'store']);
-    Route::get('films/{id}', [FilmController::class, 'show']);
     Route::delete('films/{id}', [FilmController::class, 'destroy']);
 
-    Route::get('hall', [HallController::class, 'index']);
-    Route::get('hall/{id}', [HallController::class, 'show']);
     Route::post('hall', [HallController::class, 'store']);
     Route::put('hall/{id}', [HallController::class, 'update']);
     Route::delete('hall/{id}', [HallController::class, 'destroy']);
